@@ -6,8 +6,11 @@ export const beverages = new Map([
     "latte",
     {
       name: "Latte",
-      base: bases.doppio,
-      ingredients: [ingredients.foamedMilk, ingredients.steamedMilk],
+      base: bases.get("doppio"),
+      ingredients: [
+        ingredients.get("foamedMilk"),
+        ingredients.get("steamedMilk")
+      ],
       img: "",
       details: ""
     }
@@ -16,8 +19,8 @@ export const beverages = new Map([
     "americano",
     {
       name: "Americano",
-      base: bases.doppio,
-      ingredients: [ingredients.hotWater],
+      base: bases.get("doppio"),
+      ingredients: [ingredients.get("hotWater")],
       img: "",
       details: ""
     }
