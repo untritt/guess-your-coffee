@@ -7,14 +7,14 @@ import "./App.css";
 
 export class App extends Component {
   state = {
-    base: bases.espresso,
+    base: bases.get("espresso"),
     ingredients: new Set()
   };
 
   render() {
     return (
       <React.Fragment>
-        <form id="controls">
+        <form className="controller">
           <BaseController selectedBase={this.state.base}>
             {bases}
           </BaseController>
