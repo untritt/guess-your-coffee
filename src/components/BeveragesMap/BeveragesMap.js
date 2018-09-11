@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 
 export const BeveragesMap = ({
   children: beverages,
   selectedIngredients,
   selectedBase
-}) => null;
+}) => (beverages && beverages.length !== 0 ? <section /> : null);

@@ -1,6 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 
 export const IngredientsController = ({
   children: ingredients,
   selectedIngredients
-}) => null;
+}) =>
+  ingredients && ingredients.length !== 0 ? (
+    <fieldset>
+      <legend>Add something to your cup:</legend>
+    </fieldset>
+  ) : null;

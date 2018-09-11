@@ -8,28 +8,27 @@ import "./App.css";
 export class App extends Component {
   state = {
     base: bases.espresso,
-    ingredients: {
-      foamedMilk: false,
-      steamedMilk: false,
-      hotChocolate: false,
-      hotWater: false,
-      iceCream: false
-    }
+    ingredients: new Set()
   };
+
   render() {
     return (
-      <div className="App">
-        <BaseController selectedBase={this.state.base}>{bases}</BaseController>
-        <IngredientsController selectedIngredients={this.state.ingredients}>
-          {ingredients}
-        </IngredientsController>
+      <React.Fragment>
+        <form id="controls">
+          <BaseController selectedBase={this.state.base}>
+            {bases}
+          </BaseController>
+          <IngredientsController selectedIngredients={this.state.ingredients}>
+            {ingredients}
+          </IngredientsController>
+        </form>
         <BeveragesMap
           selectedIngredients={this.state.ingredients}
           selectedBase={this.state.base}
         >
           {beverages}
         </BeveragesMap>
-      </div>
+      </React.Fragment>
     );
   }
 }
