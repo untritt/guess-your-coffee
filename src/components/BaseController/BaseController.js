@@ -12,7 +12,7 @@ export const BaseController = ({ children: bases, selectedBase }) =>
             key={baseKey}
             value={baseKey}
             selected={base === selectedBase}
-            name="selectedBase"
+            name="baseElements"
           >
             {base.name}
           </Base>

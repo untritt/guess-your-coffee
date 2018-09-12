@@ -6,35 +6,39 @@ import { BeveragesMap } from "../BeveragesMap";
 import "./App.css";
 
 export class App extends Component {
-  state = { base: bases.get("espresso"), ingredients: new Set() };
+  state = {
+    selectedBase: bases.get("espresso"),
+    selectedIngredients: new Set()
+  };
 
   onFormChange = ({
     currentTarget: {
       elements: {
-        selectedBase: { value: selectedBase },
+        baseElements: { value: selectedBaseKey },
         ingredientElements
       }
     },
-    target: { name }
+    target: { name: targetElements }
   }) => {
-    //console.log(name);
-    switch (name) {
-      case "selectedBase":
-        const base = bases.get(selectedBase);
+    switch (targetElements) {
+      case "baseElements":
+        const selectedBase = bases.get(selectedBaseKey);
 
-        this.setState({ base });
+        this.setState({ selectedBase });
         break;
 
       case "ingredientElements":
         const selectedIngredients = [...ingredientElements].reduce(
-          (selectedIngredients, { checked, value }) =>
+          (selectedIngredients, { checked, value: ingredientKey }) =>
             checked
-              ? new Set([...selectedIngredients, ingredients.get(value)])
+              ? new Set([
+                  ...selectedIngredients,
+                  ingredients.get(ingredientKey)
+                ])
               : selectedIngredients,
           new Set()
         );
-        console.log(selectedIngredients);
-        this.setState({ ingredients: selectedIngredients });
+        this.setState({ selectedIngredients });
         break;
 
       default:
@@ -46,16 +50,18 @@ export class App extends Component {
     return (
       <React.Fragment>
         <form className="controller" onChange={this.onFormChange}>
-          <BaseController selectedBase={this.state.base}>
+          <BaseController selectedBase={this.state.selectedBase}>
             {bases}
           </BaseController>
-          <IngredientsController selectedIngredients={this.state.ingredients}>
+          <IngredientsController
+            selectedIngredients={this.state.selectedIngredients}
+          >
             {ingredients}
           </IngredientsController>
         </form>
         <BeveragesMap
-          selectedIngredients={this.state.ingredients}
-          selectedBase={this.state.base}
+          selectedIngredients={this.state.selectedIngredients}
+          selectedBase={this.state.selectedBase}
         >
           {beverages}
         </BeveragesMap>
