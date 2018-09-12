@@ -6,15 +6,24 @@ import { BeveragesMap } from "../BeveragesMap";
 import "./App.css";
 
 export class App extends Component {
-  state = {
-    base: bases.get("espresso"),
-    ingredients: new Set()
+  state = { base: bases.get("espresso"), ingredients: new Set() };
+
+  onFormChange = ({
+    currentTarget: {
+      elements: {
+        selectedBase: { value: selectedBase }
+      }
+    }
+  }) => {
+    this.setState({
+      base: bases.get(selectedBase)
+    });
   };
 
   render() {
     return (
       <React.Fragment>
-        <form className="controller">
+        <form className="controller" onChange={this.onFormChange}>
           <BaseController selectedBase={this.state.base}>
             {bases}
           </BaseController>
