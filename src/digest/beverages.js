@@ -7,10 +7,10 @@ export const beverages = new Map([
     {
       name: "Latte",
       base: bases.get("doppio"),
-      ingredients: [
+      ingredients: new Set([
         ingredients.get("foamedMilk"),
         ingredients.get("steamedMilk")
-      ],
+      ]),
       img: "",
       details: ""
     }
@@ -20,7 +20,7 @@ export const beverages = new Map([
     {
       name: "Americano",
       base: bases.get("doppio"),
-      ingredients: [ingredients.get("hotWater")],
+      ingredients: new Set([ingredients.get("hotWater")]),
       img: "",
       details: ""
     }
