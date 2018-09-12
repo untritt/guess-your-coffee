@@ -11,13 +11,35 @@ export class App extends Component {
   onFormChange = ({
     currentTarget: {
       elements: {
-        selectedBase: { value: selectedBase }
+        selectedBase: { value: selectedBase },
+        ingredientElements
       }
-    }
+    },
+    target: { name }
   }) => {
-    this.setState({
-      base: bases.get(selectedBase)
-    });
+    //console.log(name);
+    switch (name) {
+      case "selectedBase":
+        const base = bases.get(selectedBase);
+
+        this.setState({ base });
+        break;
+
+      case "ingredientElements":
+        const selectedIngredients = [...ingredientElements].reduce(
+          (selectedIngredients, { checked, value }) =>
+            checked
+              ? new Set([...selectedIngredients, ingredients.get(value)])
+              : selectedIngredients,
+          new Set()
+        );
+        console.log(selectedIngredients);
+        this.setState({ ingredients: selectedIngredients });
+        break;
+
+      default:
+        break;
+    }
   };
 
   render() {
