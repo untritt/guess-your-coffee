@@ -5,25 +5,18 @@ const beverageHasIngredients = ({ ingredients }, selectedIngredients) =>
   [...selectedIngredients].filter(ingredient => ingredients.has(ingredient))
     .length === selectedIngredients.size;
 
-const findCustomBeverages = (beverages, selectedBase, selectedIngredients) =>
+const findCustomBeverages = (beverages, selectedIngredients) =>
   new Map(
     [...beverages.entries()].filter(
       ([key, beverage]) =>
-        beverage.base === selectedBase &&
-        beverageHasIngredients(beverage, selectedIngredients)
+        selectedIngredients.size > 0
+          ? beverageHasIngredients(beverage, selectedIngredients)
+          : beverage.ingredients.size === 0
     )
   );
 
-export const BeveragesMap = ({
-  children: beverages,
-  selectedIngredients,
-  selectedBase
-}) => {
-  const foundBevarages = findCustomBeverages(
-    beverages,
-    selectedBase,
-    selectedIngredients
-  );
+export const BeveragesMap = ({ children: beverages, selectedIngredients }) => {
+  const foundBevarages = findCustomBeverages(beverages, selectedIngredients);
 
   return foundBevarages && foundBevarages.length !== 0 ? (
     <section>
