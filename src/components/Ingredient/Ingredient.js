@@ -2,11 +2,12 @@ import React from "react";
 
 export const Ingredient = ({
   children: ingredientName,
-  selected,
   name,
-  value
+  value,
+  selected,
+  hidden
 }) => (
-  <label>
+  <label hidden={hidden}>
     <input
       type="checkbox"
       name={name}
