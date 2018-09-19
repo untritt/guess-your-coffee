@@ -1,4 +1,5 @@
 import { ingredients } from "./ingredients";
+import * as images from "./images";
 
 export const beverages = new Map([
   [
@@ -6,7 +7,17 @@ export const beverages = new Map([
     {
       name: "Espresso",
       ingredients: new Set(),
-      img: "",
+      img: images.espresso,
+      details:
+        "is a full-flavored, concentrated form of coffee that is served in “shots.” It is made by forcing pressurized, hot water through very finely ground coffee beans."
+    }
+  ],
+  [
+    "ristretto",
+    {
+      name: "Ristretto",
+      ingredients: new Set(),
+      img: images.ristretto,
       details: ""
     }
   ],
@@ -18,7 +29,7 @@ export const beverages = new Map([
         ingredients.get("foamedMilk"),
         ingredients.get("steamedMilk")
       ]),
-      img: "",
+      img: images.latte,
       details: ""
     }
   ],
@@ -27,7 +38,7 @@ export const beverages = new Map([
     {
       name: "Americano",
       ingredients: new Set([ingredients.get("hotWater")]),
-      img: "",
+      img: images.americano,
       details: ""
     }
   ],
@@ -45,7 +56,7 @@ export const beverages = new Map([
     {
       name: "Doppio",
       ingredients: new Set([]),
-      img: "",
+      img: images.doppio,
       details: ""
     }
   ],
@@ -57,7 +68,7 @@ export const beverages = new Map([
         ingredients.get("foamedMilk"),
         ingredients.get("steamedMilk")
       ]),
-      img: "",
+      img: images.cappuccino,
       details: ""
     }
   ],
@@ -66,7 +77,7 @@ export const beverages = new Map([
     {
       name: "Affogato",
       ingredients: new Set([ingredients.get("iceCream")]),
-      img: "",
+      img: images.affogato,
       details: ""
     }
   ],
@@ -78,7 +89,7 @@ export const beverages = new Map([
         ingredients.get("steamedMilk"),
         ingredients.get("chocolate")
       ]),
-      img: "",
+      img: images.mocha,
       details: ""
     }
   ],
@@ -96,7 +107,7 @@ export const beverages = new Map([
     {
       name: "Macchiato",
       ingredients: new Set([ingredients.get("foamedMilk")]),
-      img: "",
+      img: images.macchiato,
       details: ""
     }
   ],
@@ -114,7 +125,7 @@ export const beverages = new Map([
     {
       name: "Con Panna",
       ingredients: new Set([ingredients.get("whippedCream")]),
-      img: "",
+      img: images.conPanna,
       details: ""
     }
   ],
@@ -123,7 +134,7 @@ export const beverages = new Map([
     {
       name: "Flat White",
       ingredients: new Set([ingredients.get("steamedMilk")]),
-      img: "",
+      img: images.flatWhite,
       details: ""
     }
   ],
