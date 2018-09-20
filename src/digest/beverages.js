@@ -5,6 +5,7 @@ export const beverages = new Map([
   [
     "espresso",
     {
+      id: "espresso",
       name: "Espresso",
       ingredients: new Set(),
       img: images.espresso,
@@ -15,6 +16,7 @@ export const beverages = new Map([
   [
     "ristretto",
     {
+      id: "ristretto",
       name: "Ristretto",
       ingredients: new Set(),
       img: images.ristretto,
@@ -24,6 +26,7 @@ export const beverages = new Map([
   [
     "latte",
     {
+      id: "latte",
       name: "Latte",
       ingredients: new Set([
         ingredients.get("foamedMilk"),
@@ -36,6 +39,7 @@ export const beverages = new Map([
   [
     "americano",
     {
+      id: "americano",
       name: "Americano",
       ingredients: new Set([ingredients.get("hotWater")]),
       img: images.americano,
@@ -45,6 +49,7 @@ export const beverages = new Map([
   [
     "longBlack",
     {
+      id: "longBlack",
       name: "Long Black",
       ingredients: new Set([ingredients.get("hotWater")]),
       img: "",
@@ -54,6 +59,7 @@ export const beverages = new Map([
   [
     "doppio",
     {
+      id: "doppio",
       name: "Doppio",
       ingredients: new Set([]),
       img: images.doppio,
@@ -63,6 +69,7 @@ export const beverages = new Map([
   [
     "cappuccino",
     {
+      id: "cappuccino",
       name: "Cappuccino",
       ingredients: new Set([
         ingredients.get("foamedMilk"),
@@ -75,6 +82,7 @@ export const beverages = new Map([
   [
     "affogato",
     {
+      id: "affogato",
       name: "Affogato",
       ingredients: new Set([ingredients.get("iceCream")]),
       img: images.affogato,
@@ -84,6 +92,7 @@ export const beverages = new Map([
   [
     "mocha",
     {
+      id: "mocha",
       name: "Mocha",
       ingredients: new Set([
         ingredients.get("steamedMilk"),
@@ -96,6 +105,7 @@ export const beverages = new Map([
   [
     "blackEye",
     {
+      id: "blackEye",
       name: "Black Eye",
       ingredients: new Set([ingredients.get("brewedCoffee")]),
       img: "",
@@ -105,6 +115,7 @@ export const beverages = new Map([
   [
     "macchiato",
     {
+      id: "macchiato",
       name: "Macchiato",
       ingredients: new Set([ingredients.get("foamedMilk")]),
       img: images.macchiato,
@@ -114,6 +125,7 @@ export const beverages = new Map([
   [
     "galao",
     {
+      id: "galao",
       name: "Galao",
       ingredients: new Set([ingredients.get("foamedMilk")]),
       img: "",
@@ -123,6 +135,7 @@ export const beverages = new Map([
   [
     "conPanna",
     {
+      id: "conPanna",
       name: "Con Panna",
       ingredients: new Set([ingredients.get("whippedCream")]),
       img: images.conPanna,
@@ -132,6 +145,7 @@ export const beverages = new Map([
   [
     "flatWhite",
     {
+      id: "flatWhite",
       name: "Flat White",
       ingredients: new Set([ingredients.get("steamedMilk")]),
       img: images.flatWhite,
@@ -141,6 +155,7 @@ export const beverages = new Map([
   [
     "marocchino",
     {
+      id: "marocchino",
       name: "Marocchino",
       ingredients: new Set([
         ingredients.get("chocolate"),
