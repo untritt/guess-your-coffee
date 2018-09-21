@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { beverages, ingredients } from "../../digest";
 import { IngredientsController } from "../IngredientsController";
+import { IngredientControl } from "../IngredientControl";
 import { BeveragesMap } from "../BeveragesMap";
 import "./App.css";
 
@@ -44,6 +45,7 @@ export class App extends Component {
           : selectedIngredients,
       new Set()
     );
+    console.log([...ingredientElements]);
     this.setState({ selectedIngredients });
   };
 
@@ -58,10 +60,17 @@ export class App extends Component {
     return (
       <React.Fragment>
         <IngredientsController
-          selectedIngredients={this.state.selectedIngredients}
-          assembledIngredients={assembleIngregients(selectedBeverages)}
+          name="ingredientElements"
           onChange={this.handleChange}
-        />
+        >
+          {[...assembleIngregients(selectedBeverages)].map(ingredient => (
+            <IngredientControl
+              key={ingredient.id}
+              ingredient={ingredient}
+              selected={this.state.selectedIngredients.has(ingredient)}
+            />
+          ))}
+        </IngredientsController>
         <BeveragesMap>
           {this.state.selectedIngredients.size !== 0
             ? selectedBeverages
