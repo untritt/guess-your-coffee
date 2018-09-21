@@ -50,13 +50,17 @@ export class App extends Component {
   };
 
   render() {
-    const selectedBeverages = new Map(
-      [...beverages.entries()].filter(
-        ([key, { ingredients }]) =>
-          intersection(this.state.selectedIngredients, ingredients).size ===
-          this.state.selectedIngredients.size
-      )
-    );
+    const selectedBeverages =
+      this.state.selectedIngredients.size !== 0
+        ? new Map(
+            [...beverages.entries()].filter(
+              ([key, { ingredients }]) =>
+                intersection(this.state.selectedIngredients, ingredients)
+                  .size === this.state.selectedIngredients.size
+            )
+          )
+        : pureBeverages;
+
     return (
       <React.Fragment>
         <IngredientsController
@@ -71,11 +75,11 @@ export class App extends Component {
             />
           ))}
         </IngredientsController>
-        <BeveragesMap>
-          {this.state.selectedIngredients.size !== 0
-            ? selectedBeverages
-            : pureBeverages}
-        </BeveragesMap>
+        {/* <BeveragesMap>
+          {[...selectedBeverages.keys()].map(beverage => (
+            <Beverage key={beverageKey} {...beverage} />
+          ))}
+        </BeveragesMap> */}
       </React.Fragment>
     );
   }
