@@ -1,5 +1,7 @@
 import React from "react";
 
+import { IngredientBadge } from "../IngredientBadge";
+
 export const IngredientControl = ({
   ingredient: { id, name },
   controllerName,
@@ -13,6 +15,6 @@ export const IngredientControl = ({
       checked={selected}
       readOnly
     />
-    {name}
+    <IngredientBadge title={name} highlighted={selected} />
   </label>
 );
