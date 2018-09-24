@@ -1,17 +1,16 @@
 import React from "react";
-import { ingredients } from "../../digest";
 
 export const IngredientsController = ({
   name: controllerName,
   onChange,
-  children
+  children: controls
 }) => {
-  return ingredients && ingredients.length !== 0 ? (
+  return React.Children.count(controls) !== 0 ? (
     <form className="controller" onChange={onChange}>
       <fieldset>
         <legend>Select preffered ingredients:</legend>
-        {React.Children.map(children, controlEl =>
-          React.cloneElement(controlEl, { controllerName })
+        {React.Children.map(controls, control =>
+          React.cloneElement(control, { controllerName })
         )}
       </fieldset>
     </form>
