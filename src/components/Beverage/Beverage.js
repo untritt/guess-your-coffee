@@ -1,6 +1,9 @@
 import React from "react";
 
-export const Beverage = ({ children: { name, ingredients, img, details } }) => (
+export const Beverage = ({
+  beverage: { name, ingredients, img, details },
+  highlightedIngredients
+}) => (
   <figure>
     <ul>
       It's made with:

@@ -1,33 +1,18 @@
 import React, { Component } from "react";
-import { beverages, ingredients } from "../../digest";
-import { IngredientsController } from "../IngredientsController";
-import { IngredientControl } from "../IngredientControl";
-import { BeveragesMap } from "../BeveragesMap";
 import "./App.css";
 
-const pureBeverages = new Map(
-  [...beverages.entries()].filter(
-    ([key, { ingredients }]) => ingredients.size === 0
-  )
+import { beverages, ingredients } from "../../digest";
+import { isEmptySet, isSubset } from "../../utils/setOperations";
+
+import { IngredientsController } from "../IngredientsController";
+import { BeveragesMap } from "../BeveragesMap";
+import { Beverage } from "../Beverage";
+import { IngredientControl } from "../IngredientControl";
+
+const pureBeverages = [...beverages.values()].filter(({ ingredients }) =>
+  isEmptySet(ingredients)
 );
 
-const beverageHasIngredients = ({ ingredients }, selectedIngredients) =>
-  [...selectedIngredients].filter(ingredient => ingredients.has(ingredient))
-    .length === selectedIngredients.size;
-
-const intersection = (setA, setB) =>
-  new Set([...setA].filter(x => setB.has(x)));
-
-const assembleIngregients = beverages =>
-  new Set(
-    [...beverages.values()].reduce(
-      (foundIngredients, { ingredients }) => [
-        ...foundIngredients,
-        ...ingredients
-      ],
-      []
-    )
-  );
 export class App extends Component {
   state = {
     selectedIngredients: new Set()
@@ -45,29 +30,48 @@ export class App extends Component {
           : selectedIngredients,
       new Set()
     );
-    console.log([...ingredientElements]);
     this.setState({ selectedIngredients });
   };
 
-  render() {
-    const selectedBeverages =
-      this.state.selectedIngredients.size !== 0
-        ? new Map(
-            [...beverages.entries()].filter(
-              ([key, { ingredients }]) =>
-                intersection(this.state.selectedIngredients, ingredients)
-                  .size === this.state.selectedIngredients.size
-            )
-          )
-        : pureBeverages;
+  getBeveragesStat() {
+    const { selectedIngredients } = this.state;
 
+    const { selectedbeverages, assembledIngredients } = [
+      ...beverages.values()
+    ].reduce(
+      ({ selectedbeverages, assembledIngredients }, beverage) => {
+        const { ingredients } = beverage;
+
+        return isSubset({
+          set: ingredients,
+          subset: selectedIngredients
+        })
+          ? {
+              selectedbeverages: [...selectedbeverages, beverage],
+              assembledIngredients: [...assembledIngredients, ...ingredients]
+            }
+          : { selectedbeverages, assembledIngredients };
+      },
+      { selectedbeverages: [], assembledIngredients: [] }
+    );
+
+    return {
+      selectedbeverages: new Set(
+        isEmptySet(selectedIngredients) ? pureBeverages : selectedbeverages
+      ),
+      assembledIngredients: new Set(assembledIngredients)
+    };
+  }
+
+  render() {
+    const { selectedbeverages, assembledIngredients } = this.getBeveragesStat();
     return (
       <React.Fragment>
         <IngredientsController
-          name="ingredientElements"
+          name={"ingredientElements"}
           onChange={this.handleChange}
         >
-          {[...assembleIngregients(selectedBeverages)].map(ingredient => (
+          {[...assembledIngredients].map(ingredient => (
             <IngredientControl
               key={ingredient.id}
               ingredient={ingredient}
@@ -75,11 +79,15 @@ export class App extends Component {
             />
           ))}
         </IngredientsController>
-        {/* <BeveragesMap>
-          {[...selectedBeverages.keys()].map(beverage => (
-            <Beverage key={beverageKey} {...beverage} />
+        <BeveragesMap>
+          {[...selectedbeverages].map(beverage => (
+            <Beverage
+              key={beverage.id}
+              beverage={beverage}
+              highlightedIngredients={this.state.selectedIngredients}
+            />
           ))}
-        </BeveragesMap> */}
+        </BeveragesMap>
       </React.Fragment>
     );
   }
