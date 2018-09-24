@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Beverage = ({
+export const BeverageCard = ({
   beverage: { name, ingredients, img, details },
   highlightedIngredients
 }) => (

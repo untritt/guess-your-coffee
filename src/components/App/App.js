@@ -6,7 +6,7 @@ import { isEmptySet, isSubset } from "../../utils/setOperations";
 
 import { IngredientsController } from "../IngredientsController";
 import { BeveragesMap } from "../BeveragesMap";
-import { Beverage } from "../Beverage";
+import { BeverageCard } from "../BeverageCard";
 import { IngredientControl } from "../IngredientControl";
 
 const pureBeverages = [...beverages.values()].filter(({ ingredients }) =>
@@ -81,7 +81,7 @@ export class App extends Component {
         </IngredientsController>
         <BeveragesMap>
           {[...selectedbeverages].map(beverage => (
-            <Beverage
+            <BeverageCard
               key={beverage.id}
               beverage={beverage}
               highlightedIngredients={this.state.selectedIngredients}
