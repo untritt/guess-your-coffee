@@ -1,26 +1,22 @@
 import React from "react";
 
-import { IngredientBadge } from "../IngredientBadge";
-
 export const BeverageCard = ({
-  beverage: { name, ingredients, img, details },
+  beverage: { name, type, ingredients, img, details },
   highlightedIngredients
 }) => (
-  <figure>
-    {ingredients.length !== 0 ? (
+  <div>
+    <figure>
+      <img src={img} alt={name} />
+      <figcaption>{name}</figcaption>
+    </figure>
+    {type !== "pure" ? (
       <ul>
         {[...ingredients].map(ingredient => {
-          return (
-            <IngredientBadge
-              key={ingredient.id}
-              title={ingredient.name}
-              highlighted={highlightedIngredients.has(ingredient)}
-            />
-          );
+          return <li>{ingredient.name}</li>;
         })}
       </ul>
     ) : null}
-    <img src={img} alt={name} />
-    <figcaption>{name}</figcaption>
-  </figure>
+    {type !== "pure" ? <div>Overlay</div> : null}
+    <p>{details ? details : "Details in digest will be updated soon"}</p>
+  </div>
 );
