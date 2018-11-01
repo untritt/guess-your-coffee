@@ -1,9 +1,8 @@
 import React from "react";
-import { Overlay } from "../Overlay";
-import { Badges } from "../Badges";
+import { Badges } from "../Content/Badges";
 
 export const Content = ({
-  beverage: { name, type, ingredients, img, details }
+  source: { name, type, ingredients, img, details, highlightedIngredients }
 }) => (
   <React.Fragment>
     <figure>
@@ -13,10 +12,10 @@ export const Content = ({
     {type === "pure" ? (
       <p>{details ? details : "Details in digest will be updated soon"}</p>
     ) : (
-      <React.Fragment>
-        <Badges content={ingredients} />
-        <Overlay content={details} />
-      </React.Fragment>
+      <Badges
+        source={ingredients}
+        highlightedIngredients={highlightedIngredients}
+      />
     )}
   </React.Fragment>
 );
