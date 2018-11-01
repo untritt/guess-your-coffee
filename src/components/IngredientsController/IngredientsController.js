@@ -6,13 +6,14 @@ export const IngredientsController = ({
   children: controls
 }) => {
   return React.Children.count(controls) !== 0 ? (
-    <form className="controller" onChange={onChange}>
-      <fieldset>
-        <legend>Select preffered ingredients:</legend>
+    <form onChange={onChange}>
+      <p>Provide present ingredients and</p>
+      <h1>Guess name of your coffee</h1>
+      <div>
         {React.Children.map(controls, control =>
           React.cloneElement(control, { controllerName })
         )}
-      </fieldset>
+      </div>
     </form>
   ) : null;
 };
