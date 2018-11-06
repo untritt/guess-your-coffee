@@ -1,17 +1,10 @@
 import React from "react";
+import { Content } from "./Content";
+import { Overlay } from "./Overlay";
 
-export const BeverageCard = ({
-  beverage: { name, ingredients, img, details },
-  highlightedIngredients
-}) => (
-  <figure>
-    <ul>
-      It's made with:
-      {[...ingredients].map((ingredient, index) => {
-        return <li key={index}>{ingredient.name}</li>;
-      })}
-    </ul>
-    <img src={img} alt={name} />
-    <figcaption>{name}</figcaption>
-  </figure>
+export const BeverageCard = ({ beverage, highlightedIngredients }) => (
+  <div>
+    <Content source={{ ...beverage, highlightedIngredients }} />
+    {beverage.type !== "pure" ? <Overlay content={beverage.details} /> : null}
+  </div>
 );

@@ -5,7 +5,6 @@ import { beverages, ingredients } from "../../digest";
 import { isEmptySet, isSubset } from "../../utils/setOperations";
 
 import { IngredientsController } from "../IngredientsController";
-import { BeveragesMap } from "../BeveragesMap";
 import { BeverageCard } from "../BeverageCard";
 import { IngredientControl } from "../IngredientControl";
 
@@ -79,15 +78,13 @@ export class App extends Component {
             />
           ))}
         </IngredientsController>
-        <BeveragesMap>
-          {[...selectedbeverages].map(beverage => (
-            <BeverageCard
-              key={beverage.id}
-              beverage={beverage}
-              highlightedIngredients={this.state.selectedIngredients}
-            />
-          ))}
-        </BeveragesMap>
+        {[...selectedbeverages].map(beverage => (
+          <BeverageCard
+            key={beverage.id}
+            beverage={beverage}
+            highlightedIngredients={this.state.selectedIngredients}
+          />
+        ))}
       </React.Fragment>
     );
   }
