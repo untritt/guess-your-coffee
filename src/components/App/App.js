@@ -6,7 +6,6 @@ import { isEmptySet, isSubset } from "../../utils/setOperations";
 
 import { IngredientsController } from "../IngredientsController";
 import { BeverageCard } from "../BeverageCard";
-import { IngredientControl } from "../IngredientControl";
 
 const pureBeverages = [...beverages.values()].filter(({ ingredients }) =>
   isEmptySet(ingredients)
@@ -67,17 +66,11 @@ export class App extends Component {
     return (
       <React.Fragment>
         <IngredientsController
-          name={"ingredientElements"}
+          name="ingredientElements"
           onChange={this.handleChange}
-        >
-          {[...assembledIngredients].map(ingredient => (
-            <IngredientControl
-              key={ingredient.id}
-              ingredient={ingredient}
-              selected={this.state.selectedIngredients.has(ingredient)}
-            />
-          ))}
-        </IngredientsController>
+          ingredients={assembledIngredients}
+          selectedIngredients={this.state.selectedIngredients}
+        />
         {[...selectedbeverages].map(beverage => (
           <BeverageCard
             key={beverage.id}
