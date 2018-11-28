@@ -5,14 +5,16 @@ export const IngredientControl = ({
   controllerName,
   selected
 }) => (
-  <label>
-    <input
-      type="checkbox"
-      name={controllerName}
-      value={id}
-      checked={selected}
-      readOnly
-    />
-    {name}
-  </label>
+  <li>
+    <label>
+      <input
+        type="checkbox"
+        name={controllerName}
+        value={id}
+        checked={selected}
+        readOnly
+      />
+      {name}
+    </label>
+  </li>
 );

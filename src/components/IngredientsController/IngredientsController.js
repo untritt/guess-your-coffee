@@ -8,9 +8,7 @@ export const IngredientsController = ({
   selectedIngredients
 }) => (
   <form onChange={onChange}>
-    <p>Provide present ingredients and</p>
-    <h1>Guess name of your coffee</h1>
-    <div>
+    <ul>
       {ingredients.size !== 0
         ? [...ingredients].map(ingredient => (
             <IngredientControl
@@ -21,6 +19,6 @@ export const IngredientsController = ({
             />
           ))
         : null}
-    </div>
+    </ul>
   </form>
 );

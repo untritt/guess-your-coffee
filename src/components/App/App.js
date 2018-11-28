@@ -65,12 +65,16 @@ export class App extends Component {
     const { selectedbeverages, assembledIngredients } = this.getBeveragesStat();
     return (
       <React.Fragment>
-        <IngredientsController
-          name="ingredientElements"
-          onChange={this.handleChange}
-          ingredients={assembledIngredients}
-          selectedIngredients={this.state.selectedIngredients}
-        />
+        <div>
+          <p>Provide present ingredients and</p>
+          <h1>Guess name of your coffee</h1>
+          <IngredientsController
+            name="ingredientElements"
+            onChange={this.handleChange}
+            ingredients={assembledIngredients}
+            selectedIngredients={this.state.selectedIngredients}
+          />
+        </div>
         {[...selectedbeverages].map(beverage => (
           <BeverageCard
             key={beverage.id}
