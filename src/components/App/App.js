@@ -5,7 +5,7 @@ import { beverages, ingredients } from "../../digest";
 import { isEmptySet, isSubset } from "../../utils/setOperations";
 
 import { IngredientsController } from "../IngredientsController";
-import { BeverageCard } from "../BeverageCard";
+import { BeverageList } from "../BeverageList";
 
 const pureBeverages = [...beverages.values()].filter(({ ingredients }) =>
   isEmptySet(ingredients)
@@ -75,13 +75,10 @@ export class App extends Component {
             selectedIngredients={this.state.selectedIngredients}
           />
         </div>
-        {[...selectedbeverages].map(beverage => (
-          <BeverageCard
-            key={beverage.id}
-            beverage={beverage}
-            highlightedIngredients={this.state.selectedIngredients}
-          />
-        ))}
+        <BeverageList
+          source={selectedbeverages}
+          highlightedIngredients={this.state.selectedIngredients}
+        />
       </React.Fragment>
     );
   }
