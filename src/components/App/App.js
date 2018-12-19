@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./App.css";
 
 import { ConnectedIngredientController } from "../Container/ConnectedIngredientController";
-// import { BeverageList } from "../BeverageList";
+import { ConnectedBeverageList } from "../Container/ConnectedBeverageList";
 import { actions } from "../../actions";
 
 class App extends Component {
@@ -19,10 +19,7 @@ class App extends Component {
           <h1>Guess name of your coffee</h1>
           <ConnectedIngredientController />
         </div>
-        {/* <BeverageList
-          source={selectedbeverages}
-          highlightedIngredients={this.state.selectedIngredients}
-        /> */}
+        <ConnectedBeverageList />
       </React.Fragment>
     );
   }

@@ -2,15 +2,9 @@ import React from "react";
 import { MixBeverageCard } from "./MixBeverageCard";
 import { PureBeverageCard } from "./PureBeverageCard";
 
-export const BeverageCard = ({
-  beverage: { type, ...beverage },
-  highlightedIngredients
-}) =>
+export const BeverageCard = ({ beverage: { type, ...beverage }, onHover }) =>
   type !== "pure" ? (
-    <MixBeverageCard
-      beverage={beverage}
-      highlightedIngredients={highlightedIngredients}
-    />
+    <MixBeverageCard beverage={beverage} onHover={onHover} />
   ) : (
     <PureBeverageCard beverage={beverage} />
   );
