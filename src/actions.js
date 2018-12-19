@@ -1,28 +1,44 @@
-export const LOAD_INGREDIENTS = "LOAD_INGREDIENTS";
-export const LOAD_BEVERAGES = "LOAD_BEVERAGES";
+import { getBeverages } from "./api";
+
+export const FETCH_BEVERAGES_REQUEST = "FETCH_BEVERAGES_REQUEST";
+export const FETCH_BEVERAGES_FAILURE = "FETCH_BEVERAGES_FAILURE";
+export const FETCH_BEVERAGES_SUCCESS = "FETCH_BEVERAGES_SUCCESS";
 export const TOGGLE_INGREDIENT = "TOGGLE_INGREDIENT";
 
-const loadIngredients = ingredients => ({
-  type: LOAD_INGREDIENTS,
-  payload: {
-    ingredients
-  }
-});
+const fetchBeverages = () => dispatch => {
+  dispatch({
+    type: FETCH_BEVERAGES_REQUEST,
+    payload: {}
+  });
 
-const loadBeverages = beverages => ({
-  type: LOAD_BEVERAGES,
-  payload: {
-    beverages
-  }
-});
+  getBeverages().then(
+    response => {
+      dispatch({
+        type: FETCH_BEVERAGES_SUCCESS,
+        payload: {
+          response
+        }
+      });
+    },
+    message => {
+      dispatch({
+        type: FETCH_BEVERAGES_FAILURE,
+        payload: {
+          message
+        }
+      });
+    }
+  );
+};
 
 const toggleIngredient = id => ({
   type: TOGGLE_INGREDIENT,
-  id
+  payload: {
+    id
+  }
 });
 
 export const actions = {
-  loadIngredients,
-  loadBeverages,
+  fetchBeverages,
   toggleIngredient
 };
