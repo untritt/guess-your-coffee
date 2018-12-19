@@ -1,13 +1,16 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./App.css";
-
-import { beverages, ingredients } from "../../digest";
-import { isEmptySet, isSubset } from "../../utils/setOperations";
 
 import { ConnectedIngredientController } from "../Container/ConnectedIngredientController";
 // import { BeverageList } from "../BeverageList";
+import { actions } from "../../actions";
 
-export class App extends Component {
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchBeverages();
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -24,3 +27,12 @@ export class App extends Component {
     );
   }
 }
+
+App = connect(
+  null,
+  {
+    fetchBeverages: actions.fetchBeverages
+  }
+)(App);
+
+export { App };

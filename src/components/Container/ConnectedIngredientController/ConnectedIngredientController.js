@@ -1,16 +1,14 @@
 import { IngredientsController } from "../../IngredientsController";
 import { connect } from "react-redux";
 import { actions } from "../../../actions";
-import { getVisibleIngredientControls } from "../../../reducers";
-
-import { isEmptySet, isSubset } from "../../../utils/setOperations";
+import { getVisibleIngredients } from "../../../reducers";
 
 const mapStateToProps = state => ({
-  visibleIngredientControls: getVisibleIngredientControls(state)
+  visibleIngredients: getVisibleIngredients(state)
 });
 
 const mapDispatchToProps = {
-  onToggleIngredientControl: actions.toggleIngredient
+  onToggleIngredient: actions.toggleIngredient
 };
 
 export const ConnectedIngredientController = connect(

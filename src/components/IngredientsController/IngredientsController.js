@@ -2,16 +2,16 @@ import React from "react";
 import { IngredientControl } from "../IngredientsController/IngredientControl";
 
 export const IngredientsController = ({
-  visibleIngredientControls,
-  onToggleIngredientControl
+  visibleIngredients,
+  onToggleIngredient
 }) => (
   <ul>
-    {visibleIngredientControls.map(({ id, name, selected }) => (
+    {visibleIngredients.map(({ id, name, selected }) => (
       <IngredientControl
         key={id}
         name={name}
         selected={selected}
-        onToggle={() => onToggleIngredientControl(id)}
+        onClick={() => onToggleIngredient(id)}
       />
     ))}
   </ul>
