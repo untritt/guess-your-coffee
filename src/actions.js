@@ -4,7 +4,6 @@ export const FETCH_BEVERAGES_REQUEST = "FETCH_BEVERAGES_REQUEST";
 export const FETCH_BEVERAGES_FAILURE = "FETCH_BEVERAGES_FAILURE";
 export const FETCH_BEVERAGES_SUCCESS = "FETCH_BEVERAGES_SUCCESS";
 export const TOGGLE_INGREDIENT = "TOGGLE_INGREDIENT";
-export const FLIP_CARD = "FLIP_CARD";
 
 const fetchBeverages = () => dispatch => {
   dispatch({
@@ -39,15 +38,7 @@ const toggleIngredient = id => ({
   }
 });
 
-const flipCard = id => ({
-  type: FLIP_CARD,
-  payload: {
-    id
-  }
-});
-
 export const actions = {
   fetchBeverages,
-  toggleIngredient,
-  flipCard
+  toggleIngredient
 };

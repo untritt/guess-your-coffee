@@ -1,11 +1,7 @@
 import React from "react";
 import { BeverageCard } from "./BeverageCard";
 
-export const BeverageList = ({ visibleBeverages, onHoverBeverageCard }) =>
+export const BeverageList = ({ visibleBeverages }) =>
   visibleBeverages.map(({ id, ...beverage }) => (
-    <BeverageCard
-      key={id}
-      beverage={beverage}
-      onHover={() => onHoverBeverageCard(id)}
-    />
+    <BeverageCard key={id} beverage={beverage} />
   ));
