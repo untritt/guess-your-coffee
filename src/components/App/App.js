@@ -1,85 +1,35 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./App.css";
 
-import { beverages, ingredients } from "../../digest";
-import { isEmptySet, isSubset } from "../../utils/setOperations";
+import { ConnectedIngredientController } from "../Container/ConnectedIngredientController";
+import { ConnectedBeverageList } from "../Container/ConnectedBeverageList";
+import { actions } from "../../actions";
 
-import { IngredientsController } from "../IngredientsController";
-import { BeverageList } from "../BeverageList";
-
-const pureBeverages = [...beverages.values()].filter(({ ingredients }) =>
-  isEmptySet(ingredients)
-);
-
-export class App extends Component {
-  state = {
-    selectedIngredients: new Set()
-  };
-
-  handleChange = ({
-    currentTarget: {
-      elements: { ingredientElements }
-    }
-  }) => {
-    const selectedIngredients = [...ingredientElements].reduce(
-      (selectedIngredients, { checked, value: ingredientKey }) =>
-        checked
-          ? new Set([...selectedIngredients, ingredients.get(ingredientKey)])
-          : selectedIngredients,
-      new Set()
-    );
-    this.setState({ selectedIngredients });
-  };
-
-  getBeveragesStat() {
-    const { selectedIngredients } = this.state;
-
-    const { selectedbeverages, assembledIngredients } = [
-      ...beverages.values()
-    ].reduce(
-      ({ selectedbeverages, assembledIngredients }, beverage) => {
-        const { ingredients } = beverage;
-
-        return isSubset({
-          set: ingredients,
-          subset: selectedIngredients
-        })
-          ? {
-              selectedbeverages: [...selectedbeverages, beverage],
-              assembledIngredients: [...assembledIngredients, ...ingredients]
-            }
-          : { selectedbeverages, assembledIngredients };
-      },
-      { selectedbeverages: [], assembledIngredients: [] }
-    );
-
-    return {
-      selectedbeverages: new Set(
-        isEmptySet(selectedIngredients) ? pureBeverages : selectedbeverages
-      ),
-      assembledIngredients: new Set(assembledIngredients)
-    };
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchBeverages();
   }
 
   render() {
-    const { selectedbeverages, assembledIngredients } = this.getBeveragesStat();
     return (
       <React.Fragment>
         <div>
           <p>Provide present ingredients and</p>
           <h1>Guess name of your coffee</h1>
-          <IngredientsController
-            name="ingredientElements"
-            onChange={this.handleChange}
-            ingredients={assembledIngredients}
-            selectedIngredients={this.state.selectedIngredients}
-          />
+          <ConnectedIngredientController />
         </div>
-        <BeverageList
-          source={selectedbeverages}
-          highlightedIngredients={this.state.selectedIngredients}
-        />
+        <ConnectedBeverageList />
       </React.Fragment>
     );
   }
 }
+
+App = connect(
+  null,
+  {
+    fetchBeverages: actions.fetchBeverages
+  }
+)(App);
+
+export { App };

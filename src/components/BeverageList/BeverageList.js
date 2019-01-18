@@ -1,14 +1,7 @@
 import React from "react";
 import { BeverageCard } from "./BeverageCard";
 
-export const BeverageList = ({
-  source: selectedbeverages,
-  highlightedIngredients
-}) =>
-  [...selectedbeverages].map(({ id, ...beverage }) => (
-    <BeverageCard
-      key={id}
-      beverage={beverage}
-      highlightedIngredients={highlightedIngredients}
-    />
+export const BeverageList = ({ visibleBeverages }) =>
+  visibleBeverages.map(({ id, ...beverage }) => (
+    <BeverageCard key={id} beverage={beverage} />
   ));

@@ -1,16 +1,45 @@
 import React from "react";
-import { MixBeverageCard } from "./MixBeverageCard";
-import { PureBeverageCard } from "./PureBeverageCard";
+import { Overlay } from "./Overlay";
+import { Description } from "./Description";
+import { Badge } from "./Badge";
 
-export const BeverageCard = ({
-  beverage: { type, ...beverage },
-  highlightedIngredients
-}) =>
-  type !== "pure" ? (
-    <MixBeverageCard
-      beverage={beverage}
-      highlightedIngredients={highlightedIngredients}
-    />
-  ) : (
-    <PureBeverageCard beverage={beverage} />
-  );
+export class BeverageCard extends React.Component {
+  state = { isActive: false };
+
+  handleMouseHover = () => {
+    this.setState(this.toggleHoverState);
+  };
+
+  toggleHoverState = () => {
+    return { isActive: !this.state.isActive };
+  };
+
+  render() {
+    const { type, name, img, ingredients, details } = this.props.beverage;
+    const isSpecific = type === "mix";
+
+    return (
+      <div
+        onMouseEnter={this.handleMouseHover}
+        onMouseLeave={this.handleMouseHover}
+      >
+        <img src={img} alt={name} />
+        <h2>{name}</h2>
+        {isSpecific ? (
+          <React.Fragment>
+            <ul>
+              {[...ingredients].map(ingredient => (
+                <Badge key={ingredient.id} source={ingredient} />
+              ))}
+            </ul>
+            <Overlay>
+              <Description content={details} />
+            </Overlay>
+          </React.Fragment>
+        ) : (
+          <Description content={details} />
+        )}
+      </div>
+    );
+  }
+}
