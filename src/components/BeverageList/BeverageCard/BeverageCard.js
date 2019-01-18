@@ -32,7 +32,9 @@ export class BeverageCard extends React.Component {
                 <Badge key={ingredient.id} source={ingredient} />
               ))}
             </ul>
-            <Overlay content={details} />
+            <Overlay>
+              <Description content={details} />
+            </Overlay>
           </React.Fragment>
         ) : (
           <Description content={details} />
