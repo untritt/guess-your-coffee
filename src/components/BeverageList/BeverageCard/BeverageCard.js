@@ -6,12 +6,12 @@ import { Badge } from "./Badge";
 export class BeverageCard extends React.Component {
   state = { isActive: false };
 
-  handleMouseEnter = () => {
-    this.setState({ isActive: true });
+  handleMouseHover = () => {
+    this.setState(this.toggleHoverState);
   };
 
-  handleMouseLeave = () => {
-    this.setState({ isActive: false });
+  toggleHoverState = () => {
+    return { isActive: !this.state.isActive };
   };
 
   render() {
@@ -20,8 +20,8 @@ export class BeverageCard extends React.Component {
 
     return (
       <div
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
+        onMouseEnter={this.handleMouseHover}
+        onMouseLeave={this.handleMouseHover}
       >
         <img src={img} alt={name} />
         <h2>{name}</h2>
