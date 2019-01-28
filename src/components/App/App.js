@@ -13,14 +13,14 @@ class App extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div>
+      <div>
+        <header>
           <p>Provide present ingredients and</p>
           <h1>Guess name of your coffee</h1>
           <ConnectedIngredientController />
-        </div>
+        </header>
         <ConnectedBeverageList />
-      </React.Fragment>
+      </div>
     );
   }
 }
