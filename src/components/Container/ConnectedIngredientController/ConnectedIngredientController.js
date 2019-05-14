@@ -1,10 +1,10 @@
 import { IngredientsController } from "../../IngredientsController";
 import { connect } from "react-redux";
 import { actions } from "../../../actions";
-import { getVisibleIngredients } from "../../../reducers";
+import { getIngredients } from "../../../reducers";
 
 const mapStateToProps = state => ({
-  visibleIngredients: getVisibleIngredients(state)
+  ingredients: getIngredients(state)
 });
 
 const mapDispatchToProps = {

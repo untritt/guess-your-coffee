@@ -9,22 +9,30 @@ import beverages, { getPureBeverages, getMixBeverages } from "./beverages";
 
 export default combineReducers({ ingredients, beverages });
 
-export const getVisibleIngredients = state => {
+export const getIngredients = state => {
   if (!hasSelectedIngredients(state.ingredients)) {
-    return getAllIngredients(state.ingredients);
+    return getAllIngredients(state.ingredients).map(ingredient => ({
+      ...ingredient,
+      enabled: true
+    }));
   }
 
+  const ingredients = getAllIngredients(state.ingredients);
   const displayedBeverages = getVisibleBeverages(state);
-
-  const ingredients = displayedBeverages.reduce(
-    (ingredients, { ingredients: beverageIngredients }) => [
-      ...ingredients,
-      ...beverageIngredients
-    ],
-    []
+  const enabledIngredientIds = new Set(
+    displayedBeverages.reduce(
+      (prevIngredientIds, { ingredients = [] }) => [
+        ...prevIngredientIds,
+        ...ingredients.map(({ id }) => id)
+      ],
+      []
+    )
   );
 
-  return [...new Set(ingredients)];
+  return ingredients.map(ingredient => {
+    const enabled = enabledIngredientIds.has(ingredient.id);
+    return { ...ingredient, enabled };
+  });
 };
 
 export const getVisibleBeverages = state => {
