@@ -1,4 +1,4 @@
-import { FETCH_BEVERAGES_SUCCESS } from "../../actions";
+import { FETCH_BEVERAGES_SUCCESS } from "actions";
 
 const byId = (state = {}, { type, payload }) => {
   switch (type) {

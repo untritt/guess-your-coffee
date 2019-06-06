@@ -1,7 +1,7 @@
 import { IngredientsController } from "../../IngredientsController";
 import { connect } from "react-redux";
-import { actions } from "../../../actions";
-import { getIngredients } from "../../../reducers";
+import { actions } from "actions";
+import { getIngredients } from "reducers";
 
 const mapStateToProps = state => ({
   ingredients: getIngredients(state)

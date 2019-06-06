@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./App.css";
 
-import { ConnectedIngredientController } from "../Container/ConnectedIngredientController";
-import { ConnectedBeverageList } from "../Container/ConnectedBeverageList";
-import { actions } from "../../actions";
+import { ConnectedIngredientController } from "components/Container/ConnectedIngredientController";
+import { ConnectedBeverageList } from "components/Container/ConnectedBeverageList";
+import { actions } from "actions";
 
 class App extends Component {
   componentDidMount() {

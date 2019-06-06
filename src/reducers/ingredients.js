@@ -1,4 +1,4 @@
-import { TOGGLE_INGREDIENT, FETCH_BEVERAGES_SUCCESS } from "../actions";
+import { TOGGLE_INGREDIENT, FETCH_BEVERAGES_SUCCESS } from "actions";
 
 const ingredients = (state = {}, { type, payload }) => {
   switch (type) {

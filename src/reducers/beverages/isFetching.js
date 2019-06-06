@@ -2,7 +2,7 @@ import {
   FETCH_BEVERAGES_REQUEST,
   FETCH_BEVERAGES_FAILURE,
   FETCH_BEVERAGES_SUCCESS
-} from "../../actions";
+} from "actions";
 
 const isFetching = (state = false, { type }) => {
   switch (type) {
